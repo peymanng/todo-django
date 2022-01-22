@@ -1,0 +1,21 @@
+{% extends 'tasks/base.html' %}
+{% load static %}
+
+{% block title %}Delete {{ item.title }}{% endblock title %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'tasks/css/style.css'%}">
+{% endblock link %}
+
+{% block content %}
+    <h3 class="page-title delete-title">Are you sure you want to delete "{{item}}" ?</h3>
+<div class="delete-page-box">
+    <form method="POST" action="">
+        {% csrf_token %}
+        <a class="update-btn" href="{% url 'list' %}">Cancel</a>
+        <a class="delete-btn"><button type="submit">Confirm</button></a>
+    </form>
+</div>
+{% endblock content %}
+    
+

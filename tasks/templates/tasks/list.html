@@ -1,0 +1,34 @@
+{% extends 'tasks/base.html' %}
+{% load static %}
+
+{% block title %}todo app{% endblock title %}
+
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'tasks/css/style.css'%}">
+{% endblock link %}
+    
+
+{% block content %}
+    <h3 class='page-title'>todo app</h3>
+    <div class='container'>
+        <form action="/" method="POST">
+            {% csrf_token %}
+            {{form.title}}
+            <input class="add-btn" type="submit" value="Create Task">
+            {{form.title.errors}}
+        </form>
+        {% for task in tasks %}
+            <div class="task">
+                <a class="update-btn" href="{% url 'update-task' task.id %}">Update</a>
+                <a class="delete-btn" href="{% url 'delete' task.id %}">Delete</a>
+                {% if task.complete == True %}
+                    <strike class="task-title">{{ task }}</strike>
+                {% else %}
+                    <span class="task-title">{{ task }}</span>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}
+    

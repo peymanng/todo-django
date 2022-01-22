@@ -1,0 +1,29 @@
+{% extends 'tasks/base.html' %}
+{% load static %}
+
+{% block title %}
+    Update Task
+{% endblock title %}
+
+{% block link %}
+    <link rel="stylesheet" href="{% static 'tasks/css/style.css' %}">
+{% endblock link %}
+    
+    
+{% block content %}
+    <h3 class="page-title">Update Task</h3>
+    <div class='update-form-container'>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class='update-title-box'>
+                {{form.title.label}}
+                {{form.title}}
+            </div>
+            <div class="complete-box">
+                {{form.complete.label}}
+                {{form.complete}}
+            </div>
+            <input class="add-btn" value="Update" type="submit" name="Update Task">
+        </form>
+    </div>
+{% endblock content %}
